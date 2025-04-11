@@ -1,9 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    protected void DealDamage(float damage)
-    {
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private List<AudioClip> _damageClips = new List<AudioClip>();
 
+    public float Damage;
+    public float HitForce;
+
+    public void PlayDamageClip()
+    {
+        _audioSource.clip = _damageClips[Random.Range(0, _damageClips.Count)];
+        _audioSource.Play();
     }
 }
